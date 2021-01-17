@@ -3,10 +3,8 @@ package com.yuvi.assingmentapp.retrofit.repository;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
-import com.yuvi.assingmentapp.model.ResturantByCategoryApiResponse
-import androidx.lifecycle.LiveData;
+import com.yuvi.assingmentapp.model.ResturantByCategoryApiResponse;
 import androidx.lifecycle.MutableLiveData;
-
 import com.yuvi.assingmentapp.model.CategoriesResponse;
 import com.yuvi.assingmentapp.retrofit.RetrofitRequest;
 
@@ -48,10 +46,10 @@ public class RestaurantRepository{
         return categoryData;
     }
 
-    public MutableLiveData<ResturantByCategoryApiResponse> getResturantByCategory() {
+    public MutableLiveData<ResturantByCategoryApiResponse> getResturantByCategory(Double lat,Double lon,String catId) {
         MutableLiveData<ResturantByCategoryApiResponse> categoryData = new MutableLiveData<>();
         Log.d(TAG,"called");
-        apiRequest.getResturantByCategory("","","").enqueue(new Callback<ResturantByCategoryApiResponse>() {
+        apiRequest.getResturantByCategory(lat,lon,catId).enqueue(new Callback<ResturantByCategoryApiResponse>() {
             @Override
             public void onResponse(Call<ResturantByCategoryApiResponse> call, Response<ResturantByCategoryApiResponse> response) {
                 progressDoalog.dismiss();

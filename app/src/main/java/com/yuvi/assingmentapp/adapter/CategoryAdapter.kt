@@ -1,14 +1,17 @@
 package com.yuvi.assingmentapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.yuvi.assingmentapp.R
+import com.yuvi.assingmentapp.ResturantByCategoryActivity
 import com.yuvi.assingmentapp.model.CategoriesList
 import com.yuvi.assingmentapp.model.CategoriesResponse
 
@@ -20,6 +23,7 @@ internal class CategoryAdapter(var mcontext : Context, private var categoryList:
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var title: TextView = view.findViewById(R.id.category_name)
         var category_id: TextView = view.findViewById(R.id.category_id)
+        var imageView: ImageView = view.findViewById(R.id.image)
 
     }
     @NonNull
@@ -31,6 +35,10 @@ internal class CategoryAdapter(var mcontext : Context, private var categoryList:
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val category = categoryList[position]
         holder.title.text =categoryList[position].categories.name
+        holder.imageView.setOnClickListener {
+            val intent = Intent(mcontext,ResturantByCategoryActivity::class.java)
+            mcontext.startActivity(intent)
+        }
 
     }
     override fun getItemCount(): Int {

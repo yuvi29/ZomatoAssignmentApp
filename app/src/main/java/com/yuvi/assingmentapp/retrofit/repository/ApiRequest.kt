@@ -1,7 +1,7 @@
 package com.yuvi.assingmentapp.retrofit.repository
 
-import ResturantByCategoryApiResponse
 import com.yuvi.assingmentapp.model.CategoriesResponse
+import com.yuvi.assingmentapp.model.ResturantByCategoryApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.Call
