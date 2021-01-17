@@ -1,27 +1,26 @@
 package com.yuvi.assingmentapp.views
 
-import android.app.PendingIntent.getActivity
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.JobIntentService.enqueueWork
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yuvi.assingmentapp.R
 import com.yuvi.assingmentapp.adapter.CategoryAdapter
-import com.yuvi.assingmentapp.constants.DataConstants
-
 import com.yuvi.assingmentapp.model.CategoriesList
-import com.yuvi.assingmentapp.model.CategoriesResponse
+import com.yuvi.assingmentapp.service.ZomatoIntentSerive
 import com.yuvi.assingmentapp.view_model.CategoriesListViewModel
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
+    lateinit var pendingIntent: PendingIntent
     private val CategoryDataList: ArrayList<CategoriesList> = ArrayList<CategoriesList>()
     private lateinit var categoryAdapter: CategoryAdapter
     private var mContext : Context? = null
@@ -33,6 +32,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+        val serviceIntent = Intent(this, ZomatoIntentSerive::class.java)
+        serviceIntent.putExtra("data","Test Data")
+        ZomatoIntentSerive.enqueueWork(this, serviceIntent)
+
+        
         val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
         categoryAdapter = CategoryAdapter(mContext as MainActivity,CategoryDataList)
         val layoutManager = LinearLayoutManager(applicationContext)
@@ -45,6 +50,14 @@ class MainActivity : AppCompatActivity() {
 
         fetchCategory ()
     }
+
+//    fun enqueueWork(v: View?) {
+//
+//        val serviceIntent = Intent(this, ZomatoIntentSerive::class.java)
+//        serviceIntent.putExtra("data","Test Data")
+//        ZomatoIntentSerive.enqueueWork(this, serviceIntent)
+//
+//    }
 
     fun fetchCategory ()
     {
