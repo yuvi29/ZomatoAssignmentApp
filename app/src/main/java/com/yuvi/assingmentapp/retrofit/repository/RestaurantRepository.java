@@ -3,7 +3,7 @@ package com.yuvi.assingmentapp.retrofit.repository;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
-
+import com.yuvi.assingmentapp.model.ResturantByCategoryApiResponse
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -20,7 +20,6 @@ public class RestaurantRepository{
 
     public RestaurantRepository(Context context) {
         apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
-
         progressDoalog = new ProgressDialog(context);
         progressDoalog.setMessage("Loading...");
         progressDoalog.show();
@@ -48,4 +47,28 @@ public class RestaurantRepository{
         });
         return categoryData;
     }
+
+    public MutableLiveData<ResturantByCategoryApiResponse> getResturantByCategory() {
+        MutableLiveData<ResturantByCategoryApiResponse> categoryData = new MutableLiveData<>();
+        Log.d(TAG,"called");
+        apiRequest.getResturantByCategory("","","").enqueue(new Callback<ResturantByCategoryApiResponse>() {
+            @Override
+            public void onResponse(Call<ResturantByCategoryApiResponse> call, Response<ResturantByCategoryApiResponse> response) {
+                progressDoalog.dismiss();
+                if (response.isSuccessful()) {
+                    Log.d(TAG,"Res:"+response.message());
+                    categoryData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResturantByCategoryApiResponse> call, Throwable t) {
+                progressDoalog.dismiss();
+                Log.d(TAG,"Res:"+t.getLocalizedMessage());
+                categoryData.setValue(null);
+            }
+        });
+        return categoryData;
+    }
+
 }
