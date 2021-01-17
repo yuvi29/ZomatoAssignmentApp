@@ -23,7 +23,6 @@ public class CategoriesListViewModel extends ViewModel {
 
     }
 
-
     public LiveData<CategoriesResponse> getCategoriesList() {
         return mutableLiveData;
     }

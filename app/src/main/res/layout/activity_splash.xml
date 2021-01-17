@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.SplashActivity">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        >
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/mpokket"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assignment"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="6dp"
+            android:layout_gravity="center_horizontal"
+            />
+        <TextView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eat Sleep Repeat"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+
+            />
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
